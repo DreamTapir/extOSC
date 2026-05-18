@@ -17,7 +17,7 @@ namespace extOSC.Examples
 
 		#region Unity Methods
 
-		protected virtual void Start()
+		protected virtual void Update()
 		{
 			var message = new OSCMessage(Address);
 			message.AddValue(OSCValue.String("Hello, world!"));
