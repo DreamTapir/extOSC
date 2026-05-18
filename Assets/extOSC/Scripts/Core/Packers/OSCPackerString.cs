@@ -47,8 +47,8 @@ namespace extOSC.Core.Packers
 			Array.Copy(data, 0, buffer, index, data.Length);
 
 			index += data.Length;
-
-			IncludeZeroBytes(buffer, data.Length, ref index);
+			
+			WriteStringPadding(buffer, data.Length, ref index);
 		}
 
 		#endregion

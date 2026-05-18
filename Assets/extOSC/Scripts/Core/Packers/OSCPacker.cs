@@ -16,14 +16,31 @@ namespace extOSC.Core.Packers
 
 		#region Protected Static Methods
 
-		protected void IncludeZeroBytes(byte[] bytes, int size, ref int index)
+		protected void WriteStringPadding(byte[] bytes, int size, ref int index)
 		{
-			var zeroCount = 4 - size % 4;
+			int zeroCount = 4 - (size % 4);
 			for (var i = 0; i < zeroCount; i++)
 			{
 				bytes[index] = 0;
 				index++;
 			}
+		}
+
+		protected void WriteBlobPadding(byte[] bytes, int size, ref int index)
+		{
+			int mod = size % 4;
+			int zeroCount = (mod == 0) ? 0 : (4 - mod);
+			for (var i = 0; i < zeroCount; i++)
+			{
+				bytes[index] = 0;
+				index++;
+			}
+		}
+
+		protected void SkipBlobPadding(int size, ref int index)
+		{
+			int mod = size % 4;
+			index += (mod == 0) ? 0 : (4 - mod);
 		}
 
 		#endregion

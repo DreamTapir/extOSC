@@ -35,7 +35,8 @@ namespace extOSC.Core.Packers
 
 			Array.Copy(buffer, index, blob, 0, blobSize);
 
-			index += blobSize + (4 - blobSize % 4);
+			index += blobSize;
+			SkipBlobPadding(blobSize, ref index);
 
 			return blob;
 		}
@@ -55,8 +56,7 @@ namespace extOSC.Core.Packers
 			Array.Copy(value, 0, buffer, index, value.Length);
 
 			index += value.Length;
-
-			IncludeZeroBytes(buffer, value.Length, ref index);
+			WriteBlobPadding(buffer, value.Length, ref index);
 		}
 
 		#endregion
