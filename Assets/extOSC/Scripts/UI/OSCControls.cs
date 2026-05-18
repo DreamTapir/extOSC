@@ -48,14 +48,23 @@ namespace extOSC.UI
 			var remotePort = 7000;
 			var localPort = 7000;
 
+#if UNITY_2023_1_OR_NEWER
 			var transmitters = GameObject.FindObjectsByType<OSCTransmitter>(FindObjectsInactive.Exclude, FindObjectsSortMode.InstanceID);
+#else
+			var transmitters = GameObject.FindObjectsOfType<OSCTransmitter>();
+#endif
+
 			foreach (var transmitter in transmitters)
 			{
 				if (remotePort <= transmitter.RemotePort)
 					remotePort = transmitter.RemotePort + 1;
 			}
 
+#if UNITY_2023_1_OR_NEWER
 			var receivers = GameObject.FindObjectsByType<OSCReceiver>(FindObjectsInactive.Exclude, FindObjectsSortMode.InstanceID);
+#else
+			var receivers = GameObject.FindObjectsOfType<OSCReceiver>();
+#endif
 			foreach (var receiver in receivers)
 			{
 				if (localPort <= receiver.LocalPort)
