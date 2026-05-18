@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "com.iam1337.extosc": {
-      "version": "file:com.dreamtapir.extosc",
+      "version": "file:com.iam1337.extosc",
       "depth": 0,
       "source": "embedded",
       "dependencies": {
